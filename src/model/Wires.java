@@ -81,7 +81,9 @@ public class Wires {
       where = in.nextInt();
       valid = (where <= 3 && where >= 1);
     }
-    
+    for (int n = 0; n < buyHere.length; ) {
+
+    }
     return buyHere;
   }
 }
