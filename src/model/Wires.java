@@ -23,12 +23,13 @@ public class Wires {
     }
   }
 
-  public static int[][] inputPrices(Scanner in, String[] matNames) {
+  public static int[][] inputPrices(Scanner in, String[] matNames, Wires methNester) {
     int[][] prices = new int[3][matNames.length];
     for (int j = 0; j < 3; j++) {
       for (int k = 0; k < matNames.length; k++) {
         System.out.println("Ingrese el valor de \"" + matNames[k] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
         prices[j][k] = in.nextInt();
+        methNester.clsm();
       }
     }
     return prices;
