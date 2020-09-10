@@ -24,6 +24,18 @@ public class Main {
       System.out.println("************************************************************");
       userSays = in.nextInt();
       in.nextLine();
+
+      switch (userSays) {
+        case 0:
+          methNester.clsm();
+          break;
+        case 1:
+          methNester.clsm();
+          inputMaterials(in, methNester);
+          break;
+        default:
+          break;
+      }
     } while (userSays != 0);
 
   }
