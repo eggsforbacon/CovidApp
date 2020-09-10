@@ -1,6 +1,7 @@
 package model;
 
 import java.util.*;
+import java.io.IOException;
 public class Wires {
 
   static final int UNDER_CONSTRUCTION = 1300000;
@@ -13,25 +14,12 @@ public class Wires {
     {120000,55000,0}
   };
 
-  public static void inputMaterials(Scanner in) {
-
-    System.out.println("Ingrese la cantidad de materiales distintos solicitados:\n");
-    int matCount = in.nextInt();
-    String[] matNames = new String[matCount];
-    int[] howMany = new int[matCount];
-    int[] matPurpose = new int[matCount];
-
-    for (int i = 0; i < matCount; i++) {
-      System.out.println("************************************************");
-      System.out.println("Ingrese el NOMBRE del siguiente material\n");
-      matNames[i] = in.nextLine();
-      matNames[i] = matNames[i].toLowerCase();
-      in.nextLine();
-      System.out.println("Ingrese la CANTIDAD del material solicitado\n");
-      howMany[i] = in.nextInt();
-      System.out.println("Ingrese el PROPOSITO [1 = Obra Negra; 2 = Obra Blanca; 3 = Pintura] del material solicitado\n");
-      matPurpose[i] = in.nextInt();
-      System.out.println("Material registrado con exito!");
+  public static void clsm() {
+    try {
+      new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+    }
+    catch (Exception e) {
+      System.out.println(e);
     }
   }
 
@@ -71,18 +59,20 @@ public class Wires {
     return totPrices;
   }
 
-  public static int[] whereBuy(Scanner in, int[][] prices, String[] matNames) {
+  public static int[][] whereBuy(Scanner in, int[][] prices, String[] matNames) {
     System.out.println("Ingrese el lugar del inmueble [1 = Norte; 2 = Centro; 3 = Sur]\n");
     int where = in.nextInt() - 1;
-    int[] buyHere = new int[matNames.length];
+    int[][] buyHere = new int[3][matNames.length];
     boolean valid = (where <= 3 && where >= 1);
     while (valid == false) {
       System.out.println("Valor invalido. Reintentar:\n");
       where = in.nextInt();
       valid = (where <= 3 && where >= 1);
     }
-    for (int n = 0; n < buyHere.length; ) {
+    for (int n = 0; n < HARDWARE_SHOP.length; n++) {
+      for (int o = 0; o < buyHere[0].length; o++) {
 
+      }
     }
     return buyHere;
   }
