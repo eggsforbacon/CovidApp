@@ -11,6 +11,8 @@ public class Main {
     int userSays = 0;
     String[][] matNamesUnit = null;
     int[][] quantityPurpose = null;
+    int[][] prices = null;
+    int[] totPrices = null;
     do {
       Wires.clsm();
       System.out.println("Bienvenido a la Covid Budget App!");
@@ -38,10 +40,11 @@ public class Main {
           for (int i = 0; i < matCount; i++) {
             matNamesUnit = Validations.inputNames(i,in,matCount,matNamesUnit);
             quantityPurpose = Validations.quantityType(i,in,matCount,quantityPurpose);
+            prices = Wires.inputPrices(i,in,matNamesUnit[0]);
           }
           break;
         case 2:
-
+          totPrices = Wires.calcTotalPrice(in,prices,quantityPurpose[1]);
           break;
         default:
           break;

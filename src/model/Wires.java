@@ -23,15 +23,13 @@ public class Wires {
     }
   }
 
-  public static int[][] inputPrices(Scanner in, String[] matNames, Wires methNester) {
-    int[][] prices = new int[3][matNames.length];
-    for (int j = 0; j < 3; j++) {
-      for (int k = 0; k < matNames.length; k++) {
-        System.out.println("Ingrese el valor de \"" + matNames[k] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
-        prices[j][k] = in.nextInt();
-        methNester.clsm();
+  public static int[][] inputPrices(int i, Scanner in, String[] matNamesUnit) {
+    int[][] prices = new int[3][matNamesUnit.length];
+    for (int j = 0; j < HARDWARE_SHOP.length; j++) {
+        System.out.println("Ingrese el valor de \"" + matNamesUnit[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
+        prices[j][i] = in.nextInt();
+        clsm();
       }
-    }
     return prices;
   }
 
@@ -60,10 +58,10 @@ public class Wires {
     return totPrices;
   }
 
-  public static int[][] whereBuy(Scanner in, int[][] prices, String[] matNames) {
+  public static int[][] whereBuy(Scanner in, int[][] prices, String[] matNamesUnit) {
     System.out.println("Ingrese el lugar del inmueble [1 = Norte; 2 = Centro; 3 = Sur]\n");
     int where = in.nextInt() - 1;
-    int[][] buyHere = new int[3][matNames.length];
+    int[][] buyHere = new int[3][matNamesUnit.length];
     boolean valid = (where <= 3 && where >= 1);
     while (valid == false) {
       System.out.println("Valor invalido. Reintentar:\n");
