@@ -8,12 +8,16 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    Wires methNester = new Wires(); //Object's sole purpose is to nest methods within methods. If method needs to be fetched by its self object won't be used.
     int userSays = 0;
     String[][] matNamesUnit = null;
     int[][] quantityPurpose = null;
+    int switcher = 0;
+    boolean theyAreIn = false;
+    String topMessage = "";
     do {
       Wires.clsm();
+      System.out.println(topMessage);
+      switcher = 0;
       System.out.println("Bienvenido a la Covid Budget App!");
       System.out.println("Escriba el numero que le corresponda a la opcion que desee seleccionar,posteriormente presione [ENTER]\n");
       System.out.println("************************************************************");
@@ -30,24 +34,28 @@ public class Main {
 
       switch (userSays) {
         case 0:
-          methNester.clsm();
+          Wires.clsm();
           break;
         case 1:
-          methNester.clsm();
+          switcher = 1;
+          theyAreIn = true;
+          Wires.clsm();
           System.out.println("Ingrese la cantidad de materiales distintos solicitados:\n");
           int matCount = in.nextInt();
           for (int i = 0; i < matCount; i++) {
-            matNamesUnit = Validations.inputNames(i,in,methNester,matCount,matNamesUnit);
-            quantityPurpose = Validations.quantityType(i,in,methNester,matCount,quantityPurpose);
+            matNamesUnit = Validations.inputNames(i,in,matCount,matNamesUnit);
+            quantityPurpose = Validations.quantityType(i,in,matCount,quantityPurpose);
           }
+          topMessage = "Materiales ingresados con exito!";
+          break;
+        case 2:
+          System.out.println("Pito");
           break;
         default:
           break;
       }
+
+      String bottomMessage = Validations.displayedMessage(switcher,userSays);
     } while (userSays != 0);
-
   }
-
-  //Here
-
 }
