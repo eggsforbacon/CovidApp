@@ -31,22 +31,4 @@ public class Validations {
     quantityPurpose[1][i] = in.nextInt();
     return quantityPurpose;
   }
-
-  public static String displayedMessage(int switcher, int userSays) {
-    String theReturn = "";
-    switch (switcher) {
-      case 0:
-        break;
-      case 1:
-        theReturn = "Materiales ingresados con exito!";
-        break;
-      case 2:
-        switch (userSays) {
-
-        }
-      default:
-        break;
-    }
-    return theReturn;
-  }
 }
