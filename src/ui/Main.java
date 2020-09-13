@@ -26,7 +26,7 @@ public class Main {
   public static void menu() {
     Operations.clsm();
     System.out.println("Bienvenido a la Covid Budget App!");
-    System.out.println("Escriba el numero que le corresponda a la opcion que desee seleccionar,posteriormente presione [ENTER]\n(Por favor no ingrese a opciones mayores si no ha ingresado a las anteriores previamente.\nNo seguir esta recomendacion hara que la aplicacion falle)\n");
+    System.out.println("Escriba el numero que le corresponda a la opcion que desee seleccionar,posteriormente presione [ENTER]\n");
     System.out.println("************************************************************");
     System.out.println("*Ingresar los materiales\t\t\t\t[1]*");
     System.out.println("*Desplegar cotizacion total por ferreteria\t\t[2]*");
