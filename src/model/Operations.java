@@ -35,30 +35,30 @@ public class Operations {
   public static int[][] inputPrices(int i, Scanner in, String[] matNamesUnit, int[][] prices) {
     clsm();
     for (int j = 0; j < HARDWARE_SHOP.length; j++) {
-        System.out.println("Ingrese el valor de \"" + matNamesUnit[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
+        System.out.println("Ingrese el valor POR UNIDAD de \"" + matNamesUnit[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
         prices[j][i] = in.nextInt();
         clsm();
       }
     return prices;
   }
 
-  public static int[] calcTotalPrice(Scanner in, int[][] prices, int[] matPurpose) {
+  public static int[] calcTotalPrice(Scanner in, int[][] prices, int[][] quantityPurpose) {
     int[] totPrices = new int[HARDWARE_SHOP.length];
     for (int l = 0; l < HARDWARE_SHOP.length; l++) {
       boolean uc = false;
       boolean ww = false;
       boolean pj = false;
-      for (int m = 0; m < matPurpose.length; m++) {
-        totPrices[l] += prices[l][m];
-        if (matPurpose[m] == 1 && uc == false) {
+      for (int m = 0; m < quantityPurpose[0].length; m++) {
+        totPrices[l] += prices[l][m] * quantityPurpose[0][m];
+        if (quantityPurpose[1][m] == 1 && uc == false) {
           totPrices[l] += UNDER_CONSTRUCTION;
           uc = true;
         }
-        else if (matPurpose[m] == 2 && ww == false) {
+        else if (quantityPurpose[1][m] == 2 && ww == false) {
           totPrices[l] += WHITE_WORK;
           ww = true;
         }
-        else if (matPurpose[m] == 3 && pj == false) {
+        else if (quantityPurpose[1][m] == 3 && pj == false) {
           totPrices[l] += PAINTJOB;
           pj = true;
         }

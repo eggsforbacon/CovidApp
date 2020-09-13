@@ -37,7 +37,7 @@ public class Main {
           break;
         case 2:
           try {
-            totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose[1]);
+            totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose);
             Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices);
           } catch (NullPointerException e) {
             for (int secs = 3; secs > 0; secs--) {
