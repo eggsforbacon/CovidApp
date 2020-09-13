@@ -26,10 +26,13 @@ public class Main {
           Operations.clsm();
           System.out.println("Ingrese la cantidad de materiales distintos solicitados:\n");
           int matCount = in.nextInt();
+          matNamesUnit = new String[2][matCount];
+          quantityPurpose = new int[2][matCount];
+          prices = new int[3][matCount];
           for (int i = 0; i < matCount; i++) {
             matNamesUnit = Operations.inputNames(i,in,matCount,matNamesUnit);
             quantityPurpose = Operations.quantityType(i,in,matCount,quantityPurpose);
-            prices = Operations.inputPrices(i,in,matNamesUnit[0]);
+            prices = Operations.inputPrices(i,in,matNamesUnit[0],prices);
           }
           break;
         case 2:

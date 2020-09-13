@@ -32,8 +32,7 @@ public class Operations {
     }
   }
 
-  public static int[][] inputPrices(int i, Scanner in, String[] matNamesUnit) {
-    int[][] prices = new int[3][matNamesUnit.length];
+  public static int[][] inputPrices(int i, Scanner in, String[] matNamesUnit, int[][] prices) {
     clsm();
     for (int j = 0; j < HARDWARE_SHOP.length; j++) {
         System.out.println("Ingrese el valor de \"" + matNamesUnit[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
@@ -87,7 +86,6 @@ public class Operations {
   }
 
   public static String[][] inputNames(int i,Scanner in, int matCount, String[][] matNamesUnit) {
-    matNamesUnit = new String[2][matCount];
     clsm();
     System.out.println("************************************************");
     System.out.println("Ingrese el NOMBRE del siguiente material seguido de su UNIDAD DE MEDIDA\n");
@@ -102,7 +100,6 @@ public class Operations {
   }
 
   public static int[][] quantityType(int i, Scanner in, int matCount, int[][] quantityPurpose) {
-    quantityPurpose = new int[2][matCount];
     clsm();
     System.out.println("************************************************");
     System.out.println("Ingrese la CANTIDAD del material solicitado\n");
