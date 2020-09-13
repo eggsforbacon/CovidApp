@@ -13,45 +13,14 @@ public class Main {
     int[][] quantityPurpose = null;
     int[][] prices = null;
     int[] totPrices = null;
+
     do {
       menu();
       userSays = in.nextInt();
       in.nextLine();
-
-      switch (userSays) {
-        case 0:
-          Operations.clsm();
-          break;
-        case 1:
-          Operations.clsm();
-          System.out.println("Ingrese la cantidad de materiales distintos solicitados:\n");
-          int matCount = in.nextInt();
-          matNamesUnit = new String[2][matCount];
-          quantityPurpose = new int[2][matCount];
-          prices = new int[3][matCount];
-          for (int i = 0; i < matCount; i++) {
-            matNamesUnit = Operations.inputNames(i,in,matCount,matNamesUnit);
-            quantityPurpose = Operations.quantityType(i,in,matCount,quantityPurpose);
-            prices = Operations.inputPrices(i,in,matNamesUnit[0],prices);
-          }
-          break;
-        case 2:
-          try {
-            totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose);
-            Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices);
-          } catch (NullPointerException e) {
-            for (int secs = 3; secs > 0; secs--) {
-              Operations.clsm();
-              menu();
-              System.out.println("\nNo hay materiales que cotizar\nReintentando en " + secs + "...");
-              Operations.pause(1000);
-            }
-          }
-          break;
-        default:
-          break;
-      }
+      selection(in,userSays,matNamesUnit,quantityPurpose,prices,totPrices);
     } while (userSays != 0);
+
   }
 
   public static void menu() {
@@ -67,5 +36,41 @@ public class Main {
     System.out.println("*\t\t\t\t\t\t\t   *");
     System.out.println("*Salir de la aplicacion\t\t\t\t\t[0]*");
     System.out.println("************************************************************");
+  }
+
+  public static void selection(Scanner in, int userSays, String[][] matNamesUnit, int[][] quantityPurpose, int[][] prices, int[] totPrices) {
+    switch (userSays) {
+      case 0:
+        Operations.clsm();
+        break;
+      case 1:
+        Operations.clsm();
+        System.out.println("Ingrese la cantidad de materiales distintos solicitados (Para cancelar presione 0 y ENTER):\n");
+        int matCount = in.nextInt();
+        matNamesUnit = new String[2][matCount];
+        quantityPurpose = new int[2][matCount];
+        prices = new int[3][matCount];
+        for (int i = 0; i < matCount; i++) {
+          matNamesUnit = Operations.inputNames(i,in,matCount,matNamesUnit);
+          quantityPurpose = Operations.quantityType(i,in,matCount,quantityPurpose);
+          prices = Operations.inputPrices(i,in,matNamesUnit[0],prices);
+        }
+        break;
+      case 2:
+        try {
+          totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose);
+          Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices);
+        } catch (NullPointerException e) {
+          for (int secs = 3; secs > 0; secs--) {
+            Operations.clsm();
+            menu();
+            System.out.println("\nNo hay materiales que cotizar\nReintentando en " + secs + "...");
+            Operations.pause(1000);
+          }
+        }
+        break;
+      default:
+        break;
+    }
   }
 }
