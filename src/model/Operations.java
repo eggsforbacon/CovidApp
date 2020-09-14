@@ -13,7 +13,11 @@ public class Operations {
     {50000,0,0},
     {120000,55000,0}
   };
-
+  /**
+  Clears the console. <br>
+  <b>pre: </b> The user is using a Windows. <br>
+  <b>post: </b> The console is clear.
+  */
   public static void clsm() {
     try {
       new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
@@ -23,25 +27,32 @@ public class Operations {
     }
   }
 
-  public static void pause(int millis) {
-    try {
-      Thread.sleep(millis);
-    }
-    catch (Exception e) {
-      System.out.println(e);
-    }
-  }
-
-  public static int[][] inputPrices(int i, Scanner in, String[] matNamesUnit, int[][] prices) {
+  /**
+  Gets the Prices per shop into the program. <br>
+  <b>pre: </b> <br>
+  <b>post: </b> The prices are now stored in the program. <br>
+  @param in Scanner object that allows input to be captured in != null <br>
+  @param matNames String array that holds the names of the materials matNames != null && /forall x in matNames x!= "" <br>
+  @param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials prices != null && /forall x in prices x!= String <br>
+  */
+  public static int[][] inputPrices(int i, Scanner in, String[] matNames, int[][] prices) {
     clsm();
     for (int j = 0; j < HARDWARE_SHOP.length; j++) {
-        System.out.println("Ingrese el valor POR UNIDAD de \"" + matNamesUnit[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
+        System.out.println("Ingrese el valor POR UNIDAD de \"" + matNames[i] + "\" en la ferreteria \"" + HARDWARE_SHOP[j] + "\"");
         prices[j][i] = in.nextInt();
         clsm();
       }
     return prices;
   }
 
+  /**
+  Calculates the total prices per hardware shop <br>
+  <b>pre: </b> The array prices should be properly initialized. <br>
+  <b>post: </b> The method will return the array containing the total pricing for each hardware shop. <br>
+  @param in Scanner object that allows input to be captured in != null <br>
+  @param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials prices != null && /forall x in prices x != String <br>
+  @param quantityPurpose Integer 2D array that holds 2 arrays, one with the quantity and the other with the purpose of each material quantityPurpose !null && /forall x in quantityPurpose x != String <br>
+  */
   public static int[] calcTotalPrice(Scanner in, int[][] prices, int[][] quantityPurpose) {
     int[] totPrices = new int[HARDWARE_SHOP.length];
     for (int l = 0; l < HARDWARE_SHOP.length; l++) {
