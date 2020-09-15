@@ -46,9 +46,9 @@ public class Main {
 
   }
   /**
-  Void method that displays the menu
-  <b>pre: </b> <br>
-  <b>post: The menu is displayed.</b> <br>
+  *Void method that displays the menu
+  *<b>pre: </b> <br>
+  *<b>post: The menu is displayed.</b> <br>
   */
   public static void menu() {
     Operations.clsm();
