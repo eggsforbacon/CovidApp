@@ -15,8 +15,8 @@ public class Operations {
   };
   /**
   *Clears the console. <br>
-  *<b>pre: </b> The user is using a Windows.<br>
-  *<b>post: </b> The console is clear.<br>
+  *<b>pre: </b> The user is using a Windows device.<br>
+  *<b>post: </b> The console is cleared.<br>
   */
   public static void clsm() {
     try {
@@ -138,7 +138,7 @@ public class Operations {
   /**
   *Method that returns an array with the best places to buy each material. <br>
   *<b>pre: </b> <br>
-  *<b>post: <b> The array is returned and stored . <br>
+  *<b>post: </b> The array is returned and stored . <br>
   *@param in Scanner object that allows input to be captured. in != null<br>
   *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String<br>
   */

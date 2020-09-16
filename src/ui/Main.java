@@ -52,7 +52,7 @@ public class Main {
 
   }
   /**
-  *Void method that displays the menu
+  *Void method that displays the menu. <br>
   *<b>pre: </b> <br>
   *<b>post: The menu is displayed.</b> <br>
   */
