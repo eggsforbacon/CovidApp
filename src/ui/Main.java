@@ -13,6 +13,7 @@ public class Main {
     int[][] quantityPurpose = null;
     int[][] prices = null;
     int[] totPrices = null;
+    int[] buyHere = null;
 
     do {
       menu();
@@ -23,6 +24,8 @@ public class Main {
           Operations.clsm();
           break;
         case 1:
+          Operations.clsm();
+          int where = Operations.location(in);
           Operations.clsm();
           System.out.println("Ingrese la cantidad de materiales distintos solicitados (Para cancelar presione 0 y ENTER):\n");
           int matCount = in.nextInt();
@@ -39,6 +42,9 @@ public class Main {
           totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose);
            Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices);
           break;
+        case 3:
+          buyHere = Operations.whereBuy(in,prices);
+          Stream.printIdealLocation(in,matNamesUnit[0],prices,buyHere);
         default:
           break;
       }

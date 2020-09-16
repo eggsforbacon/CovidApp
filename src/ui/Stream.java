@@ -6,14 +6,14 @@ import java.io.IOException;
 public class Stream {
 
   /**
-  *Prints the prices in the screen
+  *Prints the prices in the screen. <br>
   *<b>pre: </b> <br>
   *<b>post: The prices are printed correctly on screen</b> <br>
   *@param in Scanner object that allows input to be captured in != null<br>
   *@param totPrices Integer array that holds the total.<br>
-  *@param matNamesUnit String 2D array that holds 2 arrays, one with the names and the other with the meassure unit for each material. matNamesUnit != null &forall; x in matNamesUnit x != ""<br>
-  *@param howMany Integer array that holds the quantity. howMany != null &forall; x in howMany x != String<br>
-  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null &forall; x in prices x != String<br>
+  *@param matNamesUnit String 2D array that holds 2 arrays, one with the names and the other with the meassure unit for each material. matNamesUnit != null && &forall; x in matNamesUnit x != ""<br>
+  *@param howMany Integer array that holds the quantity. howMany != null && &forall; x in howMany x != String<br>
+  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String<br>
   */
   public static void printPrices(Scanner in, int[] totPrices, String[][] matNamesUnit, int[] howMany, int[][] prices) {
     Operations.clsm();
@@ -25,6 +25,29 @@ public class Stream {
       }
       System.out.println("\nPrecio total en ferreteria: $" + totPrices[i] + "\n**************************************************************************************\n");
     }
+    System.out.println("(Presione cualquier tecla y ENTER para volver)");
+    in.next();
+  }
+
+  /**
+  *Prints the ideal location to buy each product. <br>
+  *<b>pre: </b> <br>
+  *<b>post: The ideal locations are printed correctly on screen</b> <br>
+  *@param in Scanner object that allows input to be captured in != null<br>
+  *@param matNames String array that holds the names for each material. matNames != null && &forall; x in matNames x != "".<br>
+  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String.<br>
+  *@param buyHere Integer array that holds the place where the material should be bought. buyHere != null && &forall; x in buyHere x != String.<br>
+  */
+  public static void printIdealLocation(Scanner in, String[] matNames, int[][] prices, int[] buyHere) {
+    Operations.clsm();
+    int transIndex;
+    System.out.println("Donde comprar:\n");
+    System.out.println("--------------------------------------------------------------------------------------");
+    for (int i = 0; i < matNames.length; i++) {
+      transIndex = buyHere[i];
+      System.out.println(matNames[i] + "            " + Operations.HARDWARE_SHOP[transIndex] + " (" + prices[transIndex][i] + ")\n");
+    }
+    System.out.println("\n**************************************************************************************\n");
     System.out.println("(Presione cualquier tecla y ENTER para volver)");
     in.next();
   }
