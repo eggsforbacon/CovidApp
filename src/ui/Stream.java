@@ -20,8 +20,8 @@ public class Stream {
     for (int i = 0; i < Operations.HARDWARE_SHOP.length; i++) {
       System.out.println("Precios en " + Operations.HARDWARE_SHOP[i]);
       for (int j = 0; j < prices[0].length; j++) {
-        System.out.println("\tProducto: " + matNamesUnit[0][j] + "\t\nTotal a Pagar: $" + prices[i][j] + "\t\nCantidad: " + howMany[j] + matNamesUnit[1][j]);
-        System.out.println("\n--------------------------------------------------------------------------------------");
+        System.out.println("Producto: " + matNamesUnit[0][j] + "\t\nTotal a Pagar: $" + prices[i][j] + "\t\nCantidad: " + howMany[j] + matNamesUnit[1][j]);
+        System.out.println("--------------------------------------------------------------------------------------");
       }
       System.out.println("\nPrecio total en ferreteria: $" + totPrices[i] + "\n**************************************************************************************\n");
     }
@@ -38,15 +38,20 @@ public class Stream {
   *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String.<br>
   *@param buyHere Integer array that holds the place where the material should be bought. buyHere != null && &forall; x in buyHere x != String.<br>
   */
-  public static void printIdealLocation(Scanner in, String[] matNames, int[][] prices, int[] buyHere) {
+  public static void printIdealLocation(Scanner in, String[] matNames, int[][] prices, int[] buyHere, int where, int[] totPrices) {
     Operations.clsm();
     int transIndex;
+    int idealFullPrice = 0;
     System.out.println("Donde comprar:\n");
     System.out.println("--------------------------------------------------------------------------------------");
     for (int i = 0; i < matNames.length; i++) {
       transIndex = buyHere[i];
-      System.out.println(matNames[i] + "            " + Operations.HARDWARE_SHOP[transIndex] + " (" + prices[transIndex][i] + ")\n");
+      idealFullPrice += prices[transIndex][i];
+      System.out.println(matNames[i] + "            " + Operations.HARDWARE_SHOP[transIndex] + " ($" + prices[transIndex][i] + ")\n");
     }
+    int localDelivery = Operations.idealDelivery(where, idealFullPrice, localDelivery);
+    System.out.println("Cotizacion ideal: $" + idealFullPrice);
+    System.out.println("Domicilio: $" + localDelivery);
     System.out.println("\n**************************************************************************************\n");
     System.out.println("(Presione cualquier tecla y ENTER para volver)");
     in.next();

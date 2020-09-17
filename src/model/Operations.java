@@ -30,7 +30,7 @@ public class Operations {
   /**
   *Method to recieve te location of the construction. <br>
   *<b>pre: </b> <br>
-  *<b>post: The location is returned.</b> <br>
+  *<b>post: </b> The location is returned. <br>
   */
   public static int location(Scanner in) {
     System.out.println("Ingrese el lugar del inmueble [1 = Norte; 2 = Centro; 3 = Sur]\n");
@@ -166,11 +166,11 @@ public class Operations {
   /**
   *Method that calculates the delivery prices. <br>
   *<b>pre: </b> <br>
-  *<b>post: </b> The delivery price is returned.<br>
+  *<b>post: </b> The delivery prices is returned.<br>
   *@param where Holds the location of the construction. 0 <= where <= 2 <br>
-  *@param totPrices Holds the total prices for each hardware shop. <br>
+  *@param totPrices Holds the total prices for each hardware shop. totPrices != null.<br>
   */
-  public static int[] deliveryReturned(int where, int[] totPrices) {
+  public static int[] deliveryForEach(int where, int[] totPrices) {
     int[] finalDelivery = new int[3];
     for (int q = 0; q < totPrices.length; q++) {
       if (totPrices[q] < 80000) {
@@ -185,5 +185,26 @@ public class Operations {
     }
 
     return finalDelivery;
+  }
+
+  /**
+  *Method that calculates the ideal delivery price. <br>
+  *<b>pre: </b> <br>
+  *<b>post: </b> The delivery price is returned.<br>
+  *@param where Holds the location of the construction. 0 <= where <= 2 <br>
+  *@param localPrice Holds the total price. localPrice != String.<br>
+  *@param localDelivery Holds the variable to be returned. <br>
+  */
+  public static int idealDelivery(int where, int localPrice, int localDelivery) {
+    if (localPrice < 80000) {
+      localDelivery = DELIVERY[where][0];
+    }
+    else if (localPrice < 300000) {
+      localDelivery = DELIVERY[where][1];
+    }
+    else {
+      localDelivery = DELIVERY[where][2];
+    }
+    return localDelivery;
   }
 }
