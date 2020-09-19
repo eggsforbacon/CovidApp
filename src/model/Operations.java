@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.IOException;
 public class Operations {
 
-  private static final int[] EVERYTHING_PRICES = {1300000,2600000,980000};
+  private static final int[] EVERYTHING_PRICES = {1300000, 2600000, 980000};
   public static final String[] HARDWARE_SHOP = {"HomeCenter","Ferreteria del Centro","Ferreteria del Barrio"};
   private static final int[][] DELIVERY = {
     {120000,28000,0},
@@ -116,23 +116,20 @@ public class Operations {
       boolean uc = false;
       boolean ww = false;
       boolean pj = false;
-      totPrices[3] = 0;
-      totPrices[4] = 0;
-      totPrices[5] = 0;
       for (int m = 0; m < quantityPurpose[0].length; m++) {
         totPrices[l] += prices[l][m] * quantityPurpose[0][m];
         if (quantityPurpose[1][m] == 1 && uc == false) {
-          totPrices[l] += EVERYTHING_PRICES[0];
+          totPrices[l] += 1300000;
           uc = true;
           totPrices[3] = 1;
         }
         else if (quantityPurpose[1][m] == 2 && ww == false) {
-          totPrices[l] += EVERYTHING_PRICES[1];
+          totPrices[l] += 2600000;
           ww = true;
           totPrices[4] = 1;
         }
         else if (quantityPurpose[1][m] == 3 && pj == false) {
-          totPrices[l] += EVERYTHING_PRICES[2];
+          totPrices[l] += 980000;
           pj = true;
           totPrices[5] = 1;
         }
@@ -179,9 +176,9 @@ public class Operations {
     int[] finalDelivery = new int[3];
     for (int r = 3; r < totPrices.length; r++) {
       if (totPrices[r] == 1) {
-        totPrices[0] -= EVERYTHING_PRICES[r];
-        totPrices[1] -= EVERYTHING_PRICES[r];
-        totPrices[2] -= EVERYTHING_PRICES[r];
+        totPrices[0] -= EVERYTHING_PRICES[r-3];
+        totPrices[1] -= EVERYTHING_PRICES[r-3];
+        totPrices[2] -= EVERYTHING_PRICES[r-3];
       }
     }
     for (int q = 0; q < finalDelivery.length; q++) {

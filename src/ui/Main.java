@@ -41,11 +41,11 @@ public class Main {
           break;
         case 2:
           totPrices = Operations.calcTotalPrice(in,prices,quantityPurpose);
-           Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices,where);
+          Stream.printPrices(in,totPrices,matNamesUnit,quantityPurpose[0],prices,where,quantityPurpose);
           break;
         case 3:
           buyHere = Operations.whereBuy(in,prices);
-          Stream.printIdealLocation(in,matNamesUnit[0],prices,buyHere,where,totPrices);
+          Stream.printIdealLocation(in,matNamesUnit[0],prices,buyHere,where,quantityPurpose[0]);
           break;
         case 4:
           Stream.printPurpose(in,matNamesUnit[0],quantityPurpose[1]);
