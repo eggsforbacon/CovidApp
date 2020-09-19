@@ -4,11 +4,9 @@ import java.util.*;
 import java.io.IOException;
 public class Operations {
 
-  public static final int UNDER_CONSTRUCTION = 1300000;
-  public static final int WHITE_WORK = 2600000;
-  public static final int PAINTJOB = 980000;
+  private static final int[] EVERYTHING_PRICES = {1300000,2600000,980000};
   public static final String[] HARDWARE_SHOP = {"HomeCenter","Ferreteria del Centro","Ferreteria del Barrio"};
-  public static final int[][] DELIVERY = {
+  private static final int[][] DELIVERY = {
     {120000,28000,0},
     {50000,0,0},
     {120000,55000,0}
@@ -31,6 +29,7 @@ public class Operations {
   *Method to recieve te location of the construction. <br>
   *<b>pre: </b> <br>
   *<b>post: </b> The location is returned. <br>
+  *@param in Scanner object that allows input to be captured. in != null.<br>
   */
   public static int location(Scanner in) {
     System.out.println("Ingrese el lugar del inmueble [1 = Norte; 2 = Centro; 3 = Sur]\n");
@@ -50,7 +49,7 @@ public class Operations {
   *<b>post: </b> The names are succesfully input into the program. <br>
   *@param in Scanner object that allows input to be captured. in != null.<br>
   *@param matCount Integer that holds the ammount of materials to be inputed. matCount != String. <br>
-  *@param matNamesUnit String 2D array that holds 2 arrays, one with the names and the other with the meassure unit for each material. matNamesUnit != null && &forall; x in matNamesUnit x != "".<br>
+  *@param matNamesUnit String 2D array that holds 2 arrays, one with the names and the other with the meassure unit for each material. matNamesUnit != null && &forall;x in matNamesUnit x != "".<br>
   */
   public static String[][] inputNames(int i,Scanner in, int matCount, String[][] matNamesUnit) {
     clsm();
@@ -72,7 +71,7 @@ public class Operations {
   *<b>post: </b> The quantities and the types of each material are succesfully input into the program. <br>
   *@param in Scanner object that allows input to be captured. in != null.<br>
   *@param matCount Integer that holds the ammount of materials to be inputed. matCount != String. <br>
-  *@param quantityPurpose Integer 2D array that holds 2 arrays, one with the quantity and the other with the purpose of each material. quantityPurpose != null && &forall; x in quantityPurpose x != String. <br>
+  *@param quantityPurpose Integer 2D array that holds 2 arrays, one with the quantity and the other with the purpose of each material. quantityPurpose != null && &forall;x in quantityPurpose x != String. <br>
   */
   public static int[][] quantityType(int i, Scanner in, int matCount, int[][] quantityPurpose) {
     clsm();
@@ -91,7 +90,7 @@ public class Operations {
   *<b>post: </b> The prices are now stored in the program.<br>
   *@param in Scanner object that allows input to be captured. in != null.<br>
   *@param matNames String array that holds the names of the materials. matNames != null and &forall;x in matNames x!= "".<br>
-  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null and &forall; x in prices x!= String.<br>
+  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null and &forall;x in prices x!= String.<br>
   */
   public static int[][] inputPrices(int i, Scanner in, String[] matNames, int[][] prices) {
     clsm();
@@ -107,40 +106,46 @@ public class Operations {
   *Calculates the total prices per hardware shop.<br>
   *<b>pre: </b> The array prices should be properly initialized.<br>
   *<b>post: </b> The method will return the array containing the total pricing for each hardware shop.<br>
-  *@param in Scanner object that allows input to be captured. in != null<br>
-  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String<br>
-  *@param quantityPurpose Integer 2D array that holds 2 arrays, one with the quantity and the other with the purpose of each material. quantityPurpose != null && &forall; x in quantityPurpose x != String<br>
+  *@param in Scanner object that allows input to be captured. in != null.<br>
+  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall;x in prices x != String.<br>
+  *@param quantityPurpose Integer 2D array that holds 2 arrays, one with the quantity and the other with the purpose of each material. quantityPurpose != null && &forall;x in quantityPurpose x != String.<br>
   */
   public static int[] calcTotalPrice(Scanner in, int[][] prices, int[][] quantityPurpose) {
-    int[] totPrices = new int[HARDWARE_SHOP.length];
+    int[] totPrices = new int[HARDWARE_SHOP.length + 3];
     for (int l = 0; l < HARDWARE_SHOP.length; l++) {
       boolean uc = false;
       boolean ww = false;
       boolean pj = false;
+      totPrices[3] = 0;
+      totPrices[4] = 0;
+      totPrices[5] = 0;
       for (int m = 0; m < quantityPurpose[0].length; m++) {
         totPrices[l] += prices[l][m] * quantityPurpose[0][m];
         if (quantityPurpose[1][m] == 1 && uc == false) {
-          totPrices[l] += UNDER_CONSTRUCTION;
+          totPrices[l] += EVERYTHING_PRICES[0];
           uc = true;
+          totPrices[3] = 1;
         }
         else if (quantityPurpose[1][m] == 2 && ww == false) {
-          totPrices[l] += WHITE_WORK;
+          totPrices[l] += EVERYTHING_PRICES[1];
           ww = true;
+          totPrices[4] = 1;
         }
         else if (quantityPurpose[1][m] == 3 && pj == false) {
-          totPrices[l] += PAINTJOB;
+          totPrices[l] += EVERYTHING_PRICES[2];
           pj = true;
+          totPrices[5] = 1;
         }
       }
     }
     return totPrices;
   }
   /**
-  *Method that returns an array with the best places to buy each material. <br>
+  *Method that returns an array with the best places to buy each material.<br>
   *<b>pre: </b> <br>
-  *<b>post: </b> The array is returned and stored . <br>
-  *@param in Scanner object that allows input to be captured. in != null<br>
-  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall; x in prices x != String<br>
+  *<b>post: </b> The array is returned and stored.<br>
+  *@param in Scanner object that allows input to be captured. in != null.<br>
+  *@param prices Integer 2D array that holds 3 arrays, one for each hardware shop, which contain the prices of the materials. prices != null && &forall;x in prices x != String.<br>
   */
   public static int[] whereBuy(Scanner in, int[][] prices) {
     int[] buyHere = new int[prices[0].length];
@@ -164,15 +169,22 @@ public class Operations {
   }
 
   /**
-  *Method that calculates the delivery prices. <br>
+  *Method that calculates the delivery prices.<br>
   *<b>pre: </b> <br>
   *<b>post: </b> The delivery prices is returned.<br>
-  *@param where Holds the location of the construction. 0 <= where <= 2 <br>
+  *@param where Holds the location of the construction. 0 <= where <= 2.<br>
   *@param totPrices Holds the total prices for each hardware shop. totPrices != null.<br>
   */
   public static int[] deliveryForEach(int where, int[] totPrices) {
     int[] finalDelivery = new int[3];
-    for (int q = 0; q < totPrices.length; q++) {
+    for (int r = 3; r < totPrices.length; r++) {
+      if (totPrices[r] == 1) {
+        totPrices[0] -= EVERYTHING_PRICES[r];
+        totPrices[1] -= EVERYTHING_PRICES[r];
+        totPrices[2] -= EVERYTHING_PRICES[r];
+      }
+    }
+    for (int q = 0; q < finalDelivery.length; q++) {
       if (totPrices[q] < 80000) {
         finalDelivery[q] = DELIVERY[where][0];
       }
@@ -188,12 +200,12 @@ public class Operations {
   }
 
   /**
-  *Method that calculates the ideal delivery price. <br>
+  *Method that calculates the ideal delivery price.<br>
   *<b>pre: </b> <br>
   *<b>post: </b> The delivery price is returned.<br>
-  *@param where Holds the location of the construction. 0 <= where <= 2 <br>
+  *@param where Holds the location of the construction. 0 <= where <= 2.<br>
   *@param localPrice Holds the total price. localPrice != String.<br>
-  *@param localDelivery Holds the variable to be returned. <br>
+  *@param localDelivery Holds the variable to be returned.<br>
   */
   public static int idealDelivery(int where, int localPrice, int localDelivery) {
     if (localPrice < 80000) {
