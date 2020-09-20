@@ -57,10 +57,8 @@ public class Operations {
     System.out.println("Ingrese el NOMBRE del siguiente material seguido de su UNIDAD DE MEDIDA\n");
     matNamesUnit[0][i] = in.next();
     in.nextLine();
-    matNamesUnit[0][i] = matNamesUnit[0][i];
     System.out.println("************************************************");
     matNamesUnit[1][i] = in.nextLine();
-    matNamesUnit[1][i] = matNamesUnit[1][i];
     clsm();
     return matNamesUnit;
   }
